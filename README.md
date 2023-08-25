@@ -14,4 +14,8 @@ task build:21.1
 
 ### Acknowledgments
 
-[r-a-p-a](https://github.com/r-a-p-a) for their work in providing the code on which this is based.
+- [r-a-p-a](https://github.com/r-a-p-a)
+
+- [ajxb](https://github.com/ajxb/packer-linuxmint)
+
+- [rmoesbergen](https://github.com/rmoesbergen/packer-linuxmint)
