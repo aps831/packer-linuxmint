@@ -7,5 +7,5 @@ iso_url = "https://www.mirrorservice.org/sites/www.linuxmint.com/pub/linuxmint.c
 preseed = "mint-21.seed"
 vagrantfile_template = "tpl/vagrantfile-mint-cinnamon-21-virtualbox.tpl"
 version = "1.1.0"
-version_description = "Linux Mint 21.1 with VirtualBox Guest Additions 6.1.38"
+version_description = "Linux Mint 21.1 with VirtualBox Guest Additions"
 vm_name = "mint-cinnamon-21.1"
