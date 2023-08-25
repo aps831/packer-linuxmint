@@ -1,0 +1,51 @@
+---
+version: "3"
+tasks:
+  # tool versions
+  tool-versions:upgrade:repo:
+    summary: Upgrade version in .tool-versions
+    desc: Upgrade version in .tool-versions
+    internal: true
+    silent: true
+    cmds:
+      - |
+        version=$(gh api -H "Accept: application/vnd.github+json" repos/{{ .OWNER }}/{{ .NAME }}/releases/latest | jq .tag_name -r)
+        version=${version//v}
+        sed -i "s/{{ .NAME }}.*/{{ .NAME }} $version/g" .tool-versions
+  tool-versions:upgrade:
+    summary: Upgrade versions in .tool-versions
+    desc: Upgrade versions in .tool-versions
+    cmds:
+      - task: tool-versions:upgrade:trivy
+      - task: tool-versions:upgrade:task
+  tool-versions:upgrade:task:
+    summary: Upgrade version of task in .tool-versions
+    desc: Upgrade version of task .tool-versions
+    cmds:
+      - task: tool-versions:upgrade:repo
+        vars:
+          OWNER: go-task
+          NAME: task
+  # packer
+  fmt:
+    summary: Run Packer fmt
+    desc: Run Packer fmt
+    cmds:
+      - packer fmt -var-file=mint-cinnamon-21.0.pkr.hcl core_template.pkr.hcl
+      - packer fmt -var-file=mint-cinnamon-21.1.pkr.hcl core_template.pkr.hcl
+  validate:
+    summary: Run Packer validate
+    desc: Run Packer validate
+    cmds:
+      - packer validate -var-file=mint-cinnamon-21.0.pkr.hcl core_template.pkr.hcl
+      - packer validate -var-file=mint-cinnamon-21.1.pkr.hcl core_template.pkr.hcl
+  build:21.0:
+    summary: Build Linux Mint 21.0 with VirtualBox Guest Additions
+    desc: Build Linux Mint 21.0 with VirtualBox Guest Additions
+    cmds:
+      - packer build -var-file=mint-cinnamon-21.0.pkr.hcl core_template.pkr.hcl
+  build:21.1:
+    summary: Build Linux Mint 21.1 with VirtualBox Guest Additions
+    desc: Build Linux Mint 21.1 with VirtualBox Guest Additions
+    cmds:
+      - packer build -var-file=mint-cinnamon-21.1.pkr.hcl core_template.pkr.hcl

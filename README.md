@@ -6,28 +6,17 @@ This repository contains Packer templates for creating Linux Mint Cinnamon Vagra
 
 ## Current boxes
 
-* [Linux Mint 18.2 (64-bit)](https://app.vagrantup.com/ajxb/boxes/mint-18.2)
-* [Linux Mint 18.3 (64-bit)](https://app.vagrantup.com/ajxb/boxes/mint-18.3)
-* [Linux Mint 19.0 (64-bit)](https://app.vagrantup.com/ajxb/boxes/mint-19.0)
+- [Linux Mint 18.2 (64-bit)](https://app.vagrantup.com/ajxb/boxes/mint-18.2)
+- [Linux Mint 18.3 (64-bit)](https://app.vagrantup.com/ajxb/boxes/mint-18.3)
+- [Linux Mint 19.0 (64-bit)](https://app.vagrantup.com/ajxb/boxes/mint-19.0)
 
 ## Building the Vagrant boxes with Packer
 
-To build all the boxes, you will need [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
+To build all the boxes, you will need [VirtualBox](https://www.virtualbox.org/wiki/Downloads). To build a specific box use the appropriate command from the taskfile, for example:
 
-We make use of pkr.hcl files containing user variables to build specific versions of Linux Mint.
-You tell `packer` to use a specific user variable file via the `-var-file=` command line
-option.  This will override the default options on the core `core_template.pkr.hcl` packer template.
-
-For example, to build Linux Mint 18.2, use the following:
-
-    $ packer build -var-file=mint-cinnamon-18.2.pkr.hcl core_template.pkr.hcl
-
-## Building the Vagrant boxes with the build script
-
-We've also provided a wrapper script `bin\build.sh` for ease of use, so alternatively, you can use
-the following to build Linux Mint 18.2 for all providers:
-
-    $ ./bin/build.sh mint-cinnamon-18.2.pkr.hcl
+```bash
+task build:21.1
+```
 
 ## Contributing
 
@@ -35,7 +24,7 @@ the following to build Linux Mint 18.2 for all providers:
 2. Create a new branch, please don't work in your `master` branch directly.
 3. Fix stuff.
 4. Update `README.md` and `AUTHORS` to reflect any changes.
-5. If you have a large change in mind, it is still preferred that you split them into small commits.  Good commit messages are important.  The git documentation project has some nice guidelines on [writing descriptive commit messages](http://git-scm.com/book/ch5-2.html#Commit-Guidelines).
+5. If you have a large change in mind, it is still preferred that you split them into small commits. Good commit messages are important. The git documentation project has some nice guidelines on [writing descriptive commit messages](http://git-scm.com/book/ch5-2.html#Commit-Guidelines).
 6. Push to your fork and submit a pull request.
 
 ### Acknowledgments
