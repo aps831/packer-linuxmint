@@ -5,7 +5,7 @@ packer {
       version = "~> 1"
     }
     virtualbox = {
-      source = "github.com/hashicorp/virtualbox"
+      source  = "github.com/hashicorp/virtualbox"
       version = "~> 1"
     }
   }
