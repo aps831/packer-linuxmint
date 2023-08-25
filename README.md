@@ -9,7 +9,7 @@ This repository contains Packer templates for creating Linux Mint Cinnamon Vagra
 To build all the boxes, you will need [VirtualBox](https://www.virtualbox.org/wiki/Downloads). To build a specific box use the appropriate command from the taskfile, for example:
 
 ```bash
-task build:21.1
+task build:virtualbox:21.1
 ```
 
 ### Acknowledgments

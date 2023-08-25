@@ -31,21 +31,21 @@ tasks:
     summary: Run Packer fmt
     desc: Run Packer fmt
     cmds:
-      - packer fmt -var-file=mint-cinnamon-21.0.pkr.hcl core_template.pkr.hcl
-      - packer fmt -var-file=mint-cinnamon-21.1.pkr.hcl core_template.pkr.hcl
+      - packer fmt -var-file=mint-cinnamon-21.0-virtualbox.pkr.hcl core-template-virtualbox.pkr.hcl
+      - packer fmt -var-file=mint-cinnamon-21.1-virtualbox.pkr.hcl core-template-virtualbox.pkr.hcl
   validate:
     summary: Run Packer validate
     desc: Run Packer validate
     cmds:
-      - packer validate -var-file=mint-cinnamon-21.0.pkr.hcl core_template.pkr.hcl
-      - packer validate -var-file=mint-cinnamon-21.1.pkr.hcl core_template.pkr.hcl
-  build:21.0:
+      - packer validate -var-file=mint-cinnamon-21.0-virtualbox.pkr.hcl core-template-virtualbox.pkr.hcl
+      - packer validate -var-file=mint-cinnamon-21.1-virtualbox.pkr.hcl core-template-virtualbox.pkr.hcl
+  build:virtualbox:21.0:
     summary: Build Linux Mint 21.0 with VirtualBox Guest Additions
     desc: Build Linux Mint 21.0 with VirtualBox Guest Additions
     cmds:
-      - packer build -var-file=mint-cinnamon-21.0.pkr.hcl core_template.pkr.hcl
-  build:21.1:
+      - packer build -var-file=mint-cinnamon-21.0-virtualbox.pkr.hcl core-template-virtualbox.pkr.hcl
+  build:virtualbox:21.1:
     summary: Build Linux Mint 21.1 with VirtualBox Guest Additions
     desc: Build Linux Mint 21.1 with VirtualBox Guest Additions
     cmds:
-      - packer build -var-file=mint-cinnamon-21.1.pkr.hcl core_template.pkr.hcl
+      - packer build -var-file=mint-cinnamon-21.1-virtualbox.pkr.hcl core-template-virtualbox.pkr.hcl
