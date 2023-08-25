@@ -1,7 +1,7 @@
 _comment = "Built with `packer build -var-file=mint-cinnamon-21.0-virtualbox.pkr.hcl core-template-virtualbox.pkr.hcl`"
 boot_command_prefix = "<esc><wait>c<wait>"
 box_tag = "aps831/mint-21.0"
-disk_size = "20000"
+disk_size = 20000
 iso_checksum = "sha256:f524114e4a10fb04ec428af5e8faf7998b18271ea72fbb4b63efe0338957c0f3"
 iso_url = "https://www.mirrorservice.org/sites/www.linuxmint.com/pub/linuxmint.com/stable/21/linuxmint-21-cinnamon-64bit.iso"
 preseed = "mint-21.seed"
