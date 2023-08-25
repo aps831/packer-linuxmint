@@ -14,20 +14,20 @@ This repository contains Packer templates for creating Linux Mint Cinnamon Vagra
 
 To build all the boxes, you will need [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
 
-We make use of JSON files containing user variables to build specific versions of Linux Mint.
+We make use of pkr.hcl files containing user variables to build specific versions of Linux Mint.
 You tell `packer` to use a specific user variable file via the `-var-file=` command line
-option.  This will override the default options on the core `core_template.json` packer template.
+option.  This will override the default options on the core `core_template.pkr.hcl` packer template.
 
 For example, to build Linux Mint 18.2, use the following:
 
-    $ packer build -var-file=mint-cinnamon-18.2.json core_template.json
+    $ packer build -var-file=mint-cinnamon-18.2.pkr.hcl core_template.pkr.hcl
 
 ## Building the Vagrant boxes with the build script
 
 We've also provided a wrapper script `bin\build.sh` for ease of use, so alternatively, you can use
 the following to build Linux Mint 18.2 for all providers:
 
-    $ ./bin/build.sh mint-cinnamon-18.2.json
+    $ ./bin/build.sh mint-cinnamon-18.2.pkr.hcl
 
 ## Contributing
 

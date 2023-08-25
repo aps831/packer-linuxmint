@@ -98,7 +98,7 @@ main() {
   setup_vars "$@"
 
   echo "Validating ${BOX}"
-  packer validate -var-file="${BOX}" core_template.json
+  packer validate -var-file="${BOX}" core_template.pkr.hcl
 
   popd || exit > /dev/null
 }

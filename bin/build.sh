@@ -115,10 +115,10 @@ main() {
   # Build the VM
   if [[ "${DEPLOY}" == 'true' ]]; then
     echo "Building and deploying ${BOX}"
-    packer build -var-file="${BOX}" core_template.json
+    packer build -var-file="${BOX}" core_template.pkr.hcl
   else
     echo "Building ${BOX}"
-    jq '.["post-processors"][0] |= map(select(.type != "vagrant-cloud"))' core_template.json | packer build -var-file="${BOX}" -
+    packer build -var-file="${BOX}" core_template.pkr.hcl
   fi
 
   END_TIME=$(date +"%s")

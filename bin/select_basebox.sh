@@ -11,7 +11,7 @@
 select_basebox() {
   # Base boxes available for build
   PS3='Select machine : '
-  local readonly list="$(find ${MY_CWD} -maxdepth 1 -type f -name '*.json' -printf '%f\n' | sort | grep -v ^core_template.json$)"
+  local readonly list="$(find ${MY_CWD} -maxdepth 1 -type f -name '*.pkr.hcl' -printf '%f\n' | sort | grep -v ^core_template.pkr.hcl$)"
   local option
   select option in ${list}; do
     if [[ -n "${option}" ]]; then
