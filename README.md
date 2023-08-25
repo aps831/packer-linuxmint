@@ -6,7 +6,11 @@ This repository contains Packer templates for creating Linux Mint Cinnamon Vagra
 
 ## Building the Vagrant boxes with Packer
 
-To build all the boxes, you will need [VirtualBox](https://www.virtualbox.org/wiki/Downloads). To build a specific box use the appropriate command from the taskfile, for example:
+To build the Virtualbox boxes, you will need [VirtualBox](https://www.virtualbox.org/wiki/Downloads).
+
+To build the KVM boxes, you will need [KVM](https://help.ubuntu.com/community/KVM/Installation) and [Vagrant-libvirt](https://vagrant-libvirt.github.io/vagrant-libvirt/) installed.
+
+To build a specific box use the appropriate command from the taskfile, for example:
 
 ```bash
 task build:virtualbox:21.1
