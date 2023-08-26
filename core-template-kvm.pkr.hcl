@@ -88,7 +88,7 @@ variable "vm_name" {
 
 source "qemu" "iso" {
   boot_command     = ["${var.boot_command_prefix}", "set gfxpayload=keep<enter>", "linux /casper/vmlinuz ", "url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/${var.preseed} ", "boot=casper ", "initrd=/casper/initrd.lz ", "debug-ubiquity ", "automatic-ubiquity ", "noprompt ", "-- <enter>", "initrd /casper/initrd.lz<enter>", "boot<enter>"]
-  cpus             = "2"
+  cpus             = "4"
   disk_size        = "${var.disk_size}"
   format           = "qcow2"
   accelerator      = "kvm"
@@ -98,7 +98,7 @@ source "qemu" "iso" {
   http_directory   = "http"
   iso_checksum     = "${var.iso_checksum}"
   iso_url          = "${var.iso_url}"
-  memory           = "4096"
+  memory           = "8192"
   shutdown_command = "echo '${var.ssh_password}' | sudo -S shutdown -P now"
   ssh_password     = "${var.ssh_password}"
   ssh_username     = "${var.ssh_username}"
