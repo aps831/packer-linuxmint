@@ -102,23 +102,23 @@ variable "vm_name" {
 }
 
 source "qemu" "iso" {
-  boot_command         = ["${var.boot_command_prefix}", "set gfxpayload=keep<enter>", "linux /casper/vmlinuz ", "url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/${var.preseed} ", "boot=casper ", "initrd=/casper/initrd.lz ", "debug-ubiquity ", "automatic-ubiquity ", "noprompt ", "-- <enter>", "initrd /casper/initrd.lz<enter>", "boot<enter>"]
-  cpus                 = "2"
-  disk_size            = "${var.disk_size}"
-  format               = "qcow2"
-  accelerator          = "kvm"
-  net_device           = "virtio-net"
-  disk_interface       = "virtio"
-  headless             = "${var.headless}"
-  http_directory       = "http"
-  iso_checksum         = "${var.iso_checksum}"
-  iso_url              = "${var.iso_url}"
-  memory               = "4096"
-  shutdown_command     = "echo '${var.ssh_password}'|sudo -S shutdown -P now"
-  ssh_password         = "${var.ssh_password}"
-  ssh_username         = "${var.ssh_username}"
-  ssh_timeout          = "10000s"
-  vm_name              = "${var.vm_name}"
+  boot_command     = ["${var.boot_command_prefix}", "set gfxpayload=keep<enter>", "linux /casper/vmlinuz ", "url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/${var.preseed} ", "boot=casper ", "initrd=/casper/initrd.lz ", "debug-ubiquity ", "automatic-ubiquity ", "noprompt ", "-- <enter>", "initrd /casper/initrd.lz<enter>", "boot<enter>"]
+  cpus             = "2"
+  disk_size        = "${var.disk_size}"
+  format           = "qcow2"
+  accelerator      = "kvm"
+  net_device       = "virtio-net"
+  disk_interface   = "virtio"
+  headless         = "${var.headless}"
+  http_directory   = "http"
+  iso_checksum     = "${var.iso_checksum}"
+  iso_url          = "${var.iso_url}"
+  memory           = "4096"
+  shutdown_command = "echo '${var.ssh_password}'|sudo -S shutdown -P now"
+  ssh_password     = "${var.ssh_password}"
+  ssh_username     = "${var.ssh_username}"
+  ssh_timeout      = "10000s"
+  vm_name          = "${var.vm_name}"
 }
 
 build {
