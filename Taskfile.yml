@@ -40,27 +40,27 @@ tasks:
       - packer validate -var-file=mint-cinnamon-21.2-virtualbox.pkr.hcl core-template-virtualbox.pkr.hcl
       - packer validate -var-file=mint-cinnamon-21.2-kvm.pkr.hcl core-template-kvm.pkr.hcl
   build:virtualbox:
-    summary: Build Linux Mint with VirtualBox Guest Additions
-    desc: Build Linux Mint with VirtualBox Guest Additions
+    summary: Build Linux Mint for VirtualBox
+    desc: Build Linux Mint for VirtualBox
     internal: true
     cmds:
       - packer build -var-file=mint-cinnamon-{{ .VERSION }}-virtualbox.pkr.hcl core-template-virtualbox.pkr.hcl
   build:kvm:
-    summary: Build Linux Mint
-    desc: Build Linux Mint
+    summary: Build Linux Mint for KVM
+    desc: Build Linux Mint for KVM
     internal: true
     cmds:
       - packer build -var-file=mint-cinnamon-{{ .VERSION }}-kvm.pkr.hcl core-template-kvm.pkr.hcl
   build:virtualbox:21.2:
-    summary: Build Linux Mint 21.2 with VirtualBox Guest Additions
-    desc: Build Linux Mint 21.2 with VirtualBox Guest Additions
+    summary: Build Linux Mint 21.2 for VirtualBox
+    desc: Build Linux Mint 21.2 for VirtualBox
     cmds:
       - task: build:virtualbox
         vars:
           VERSION: 21.2
   build:kvm:21.2:
-    summary: Build Linux Mint 21.2
-    desc: Build Linux Mint 21.2
+    summary: Build Linux Mint 21.2 for KVM
+    desc: Build Linux Mint 21.2 for KVM
     cmds:
       - task: build:kvm
         vars:
