@@ -31,12 +31,14 @@ tasks:
     summary: Run Packer fmt
     desc: Run Packer fmt
     cmds:
-      - packer fmt -var-file=mint-cinnamon-21.2-libvirt.pkr.hcl core-template-libvirt.pkr.hcl
+      - packer fmt -var-file=mint-cinnamon-21.2-virtualbox.pkr.hcl core-template-virtualbox.pkr.hcl
+      - packer fmt -var-file=mint-cinnamon-21.2-kvm.pkr.hcl core-template-kvm.pkr.hcl
   validate:
     summary: Run Packer validate
     desc: Run Packer validate
     cmds:
-      - packer validate -var-file=mint-cinnamon-21.2-libvirt.pkr.hcl core-template-libvirt.pkr.hcl
+      - packer validate -var-file=mint-cinnamon-21.2-virtualbox.pkr.hcl core-template-virtualbox.pkr.hcl
+      - packer validate -var-file=mint-cinnamon-21.2-kvm.pkr.hcl core-template-kvm.pkr.hcl
   build:virtualbox:
     summary: Build Linux Mint with VirtualBox Guest Additions
     desc: Build Linux Mint with VirtualBox Guest Additions
