@@ -41,17 +41,7 @@ variable "headless" {
   default = "false"
 }
 
-variable "hostname" {
-  type    = string
-  default = "vagrant"
-}
-
 variable "iso_checksum" {
-  type    = string
-  default = "TBD"
-}
-
-variable "iso_checksum_type" {
   type    = string
   default = "TBD"
 }
@@ -64,11 +54,6 @@ variable "iso_url" {
 variable "preseed" {
   type    = string
   default = "TBD"
-}
-
-variable "ssh_fullname" {
-  type    = string
-  default = "vagrant"
 }
 
 variable "ssh_password" {
