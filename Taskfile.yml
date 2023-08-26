@@ -43,14 +43,26 @@ tasks:
     summary: Build Linux Mint for VirtualBox
     desc: Build Linux Mint for VirtualBox
     internal: true
+    silent: true
     cmds:
-      - packer build -var-file=mint-cinnamon-{{ .VERSION }}-virtualbox.pkr.hcl core-template-virtualbox.pkr.hcl
+      - |
+        stty -echo
+        read -r -p "Enter Vagrant Cloud token: " VAGRANT_CLOUD_TOKEN
+        echo ""
+        stty echo
+        packer build -var="cloud_token=$VAGRANT_CLOUD_TOKEN" -var-file=mint-cinnamon-{{ .VERSION }}-virtualbox.pkr.hcl core-template-virtualbox.pkr.hcl
   build:kvm:
     summary: Build Linux Mint for KVM
     desc: Build Linux Mint for KVM
     internal: true
+    silent: true
     cmds:
-      - packer build -var-file=mint-cinnamon-{{ .VERSION }}-kvm.pkr.hcl core-template-kvm.pkr.hcl
+      - |
+        stty -echo
+        read -r -p "Enter Vagrant Cloud token: " VAGRANT_CLOUD_TOKEN
+        echo ""
+        stty echo
+        packer build -var="cloud_token=$VAGRANT_CLOUD_TOKEN" -var-file=mint-cinnamon-{{ .VERSION }}-kvm.pkr.hcl core-template-kvm.pkr.hcl
   build:virtualbox:21.2:
     summary: Build Linux Mint 21.2 for VirtualBox
     desc: Build Linux Mint 21.2 for VirtualBox

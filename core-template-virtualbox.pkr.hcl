@@ -129,10 +129,22 @@ build {
     scripts         = ["script/vagrant.sh", "script/motd.sh", "script/cleanup.sh"]
   }
 
-  post-processor "vagrant" {
-    keep_input_artifact  = false
-    compression_level    = "9"
-    output               = "box/{{ .Provider }}/${var.vm_name}-${var.version}.box"
-    vagrantfile_template = "${var.vagrantfile_template}"
+  post-processors {
+
+    post-processor "vagrant" {
+      keep_input_artifact  = false
+      compression_level    = "9"
+      output               = "box/{{ .Provider }}/${var.vm_name}-${var.version}.box"
+      vagrantfile_template = "${var.vagrantfile_template}"
+    }
+
+    post-processor "vagrant-cloud" {
+      box_tag             = "${var.box_tag}"
+      access_token        = "${var.cloud_token}"
+      version             = "${var.version}"
+      version_description = "${var.version_description}"      
+    }
+
   }
+
 }
