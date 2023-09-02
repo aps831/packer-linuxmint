@@ -66,11 +66,6 @@ variable "ssh_username" {
   default = "vagrant"
 }
 
-variable "vagrantfile_template" {
-  type    = string
-  default = "TBD"
-}
-
 variable "version" {
   type    = string
   default = "TBD"
@@ -132,7 +127,6 @@ build {
       keep_input_artifact  = false
       compression_level    = "9"
       output               = "box/{{ .Provider }}/${var.vm_name}-${var.version}.box"
-      vagrantfile_template = "${var.vagrantfile_template}"
     }
 
     post-processor "vagrant-cloud" {
