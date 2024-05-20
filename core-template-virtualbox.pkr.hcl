@@ -16,11 +16,6 @@ variable "_comment" {
   default = "Variables below should be overridden in template"
 }
 
-variable "boot_command_prefix" {
-  type    = string
-  default = "TBD"
-}
-
 variable "box_tag" {
   type    = string
   default = "TBD"
@@ -87,7 +82,29 @@ variable "vm_name" {
 }
 
 source "virtualbox-iso" "iso" {
-  boot_command         = ["${var.boot_command_prefix}", "set gfxpayload=keep<enter>", "linux /casper/vmlinuz ", "url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/${var.preseed} ", "boot=casper ", "initrd=/casper/initrd.lz ", "debug-ubiquity ", "automatic-ubiquity ", "noprompt ", "-- <enter>", "initrd /casper/initrd.lz<enter>", "boot<enter>"]
+  boot_command = [
+    "<tab>",
+    "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+    "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+    "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+    "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+    "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+    "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+    "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+    "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+    "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+    "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+    "/casper/vmlinuz ",
+    "url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/${var.preseed} ",
+    "boot=casper ",
+    "initrd=/casper/initrd.lz ",
+    "debug-ubiquity ",
+    "automatic-ubiquity ",
+    "noprompt ",
+    "-- <enter>",
+    "initrd /casper/initrd.lz<enter>",
+    "boot<enter>"
+  ]
   cpus                 = "4"
   disk_size            = "${var.disk_size}"
   gfx_controller       = "vmsvga"
@@ -142,7 +159,7 @@ build {
       box_tag             = "${var.box_tag}"
       access_token        = "${var.cloud_token}"
       version             = "${var.version}"
-      version_description = "${var.version_description}"      
+      version_description = "${var.version_description}"
     }
 
   }

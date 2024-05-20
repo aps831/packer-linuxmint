@@ -16,11 +16,6 @@ variable "_comment" {
   default = "Variables below should be overridden in template"
 }
 
-variable "boot_command_prefix" {
-  type    = string
-  default = "TBD"
-}
-
 variable "box_tag" {
   type    = string
   default = "TBD"
@@ -82,7 +77,29 @@ variable "vm_name" {
 }
 
 source "qemu" "iso" {
-  boot_command     = ["${var.boot_command_prefix}", "set gfxpayload=keep<enter>", "linux /casper/vmlinuz ", "url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/${var.preseed} ", "boot=casper ", "initrd=/casper/initrd.lz ", "debug-ubiquity ", "automatic-ubiquity ", "noprompt ", "-- <enter>", "initrd /casper/initrd.lz<enter>", "boot<enter>"]
+  boot_command = [
+    "<tab>",
+    "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+    "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+    "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+    "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+    "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+    "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+    "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+    "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+    "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+    "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+    "/casper/vmlinuz ",
+    "url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/${var.preseed} ",
+    "boot=casper ",
+    "initrd=/casper/initrd.lz ",
+    "debug-ubiquity ",
+    "automatic-ubiquity ",
+    "noprompt ",
+    "-- <enter>",
+    "initrd /casper/initrd.lz<enter>",
+    "boot<enter>"
+  ]
   cpus             = "4"
   disk_size        = "${var.disk_size}"
   format           = "qcow2"
@@ -99,6 +116,7 @@ source "qemu" "iso" {
   ssh_username     = "${var.ssh_username}"
   ssh_timeout      = "10000s"
   vm_name          = "${var.vm_name}"
+  boot_wait        = "5s"
 }
 
 build {

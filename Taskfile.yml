@@ -31,14 +31,14 @@ tasks:
     summary: Run Packer fmt
     desc: Run Packer fmt
     cmds:
-      - packer fmt -var-file=mint-cinnamon-21.2-virtualbox.pkr.hcl core-template-virtualbox.pkr.hcl
-      - packer fmt -var-file=mint-cinnamon-21.2-kvm.pkr.hcl core-template-kvm.pkr.hcl
+      - packer fmt -var-file=mint-cinnamon-21.3-virtualbox.pkr.hcl core-template-virtualbox.pkr.hcl
+      - packer fmt -var-file=mint-cinnamon-21.3-kvm.pkr.hcl core-template-kvm.pkr.hcl
   validate:
     summary: Run Packer validate
     desc: Run Packer validate
     cmds:
-      - packer validate -var-file=mint-cinnamon-21.2-virtualbox.pkr.hcl core-template-virtualbox.pkr.hcl
-      - packer validate -var-file=mint-cinnamon-21.2-kvm.pkr.hcl core-template-kvm.pkr.hcl
+      - packer validate -var-file=mint-cinnamon-21.3-virtualbox.pkr.hcl core-template-virtualbox.pkr.hcl
+      - packer validate -var-file=mint-cinnamon-21.3-kvm.pkr.hcl core-template-kvm.pkr.hcl
   build:virtualbox:
     summary: Build Linux Mint for VirtualBox
     desc: Build Linux Mint for VirtualBox
@@ -63,17 +63,17 @@ tasks:
         echo ""
         stty echo
         packer build -var="cloud_token=$VAGRANT_CLOUD_TOKEN" -var-file=mint-cinnamon-{{ .VERSION }}-kvm.pkr.hcl core-template-kvm.pkr.hcl
-  build:virtualbox:21.2:
-    summary: Build Linux Mint 21.2 for VirtualBox
-    desc: Build Linux Mint 21.2 for VirtualBox
+  build:virtualbox:21.3:
+    summary: Build Linux Mint 21.3 for VirtualBox
+    desc: Build Linux Mint 21.3 for VirtualBox
     cmds:
       - task: build:virtualbox
         vars:
-          VERSION: 21.2
-  build:kvm:21.2:
-    summary: Build Linux Mint 21.2 for KVM
-    desc: Build Linux Mint 21.2 for KVM
+          VERSION: 21.3
+  build:kvm:21.3:
+    summary: Build Linux Mint 21.3 for KVM
+    desc: Build Linux Mint 21.3 for KVM
     cmds:
       - task: build:kvm
         vars:
-          VERSION: 21.2
+          VERSION: 21.3

@@ -13,7 +13,7 @@ To build the KVM boxes, you will need [KVM](https://help.ubuntu.com/community/KV
 To build a specific box use the appropriate command from the taskfile, for example:
 
 ```bash
-task build:virtualbox:21.2
+task build:virtualbox:21.3
 ```
 
 ### Acknowledgments
