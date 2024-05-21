@@ -10,6 +10,8 @@ To build the Virtualbox boxes, you will need [VirtualBox](https://www.virtualbox
 
 To build the KVM boxes, you will need [KVM](https://help.ubuntu.com/community/KVM/Installation) and [Vagrant-libvirt](https://vagrant-libvirt.github.io/vagrant-libvirt/) installed.
 
+To upload a box to [Vagrantup](https://app.vagrantup.com/), a new Vagrant box must first be created through the user interface.
+
 To build a specific box use the appropriate command from the taskfile, for example:
 
 ```bash
