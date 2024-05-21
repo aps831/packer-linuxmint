@@ -37,14 +37,14 @@ tasks:
     summary: Run Packer fmt
     desc: Run Packer fmt
     cmds:
-      - packer fmt -var-file=mint-cinnamon-21.3-virtualbox.pkr.hcl core-template-virtualbox.pkr.hcl
-      - packer fmt -var-file=mint-cinnamon-21.3-kvm.pkr.hcl core-template-kvm.pkr.hcl
+      - packer fmt -var-file=mint-cinnamon-21.3-virtualbox.pkrvars.hcl core-template-virtualbox.pkr.hcl
+      - packer fmt -var-file=mint-cinnamon-21.3-kvm.pkrvars.hcl core-template-kvm.pkr.hcl
   validate:
     summary: Run Packer validate
     desc: Run Packer validate
     cmds:
-      - packer validate -var-file=mint-cinnamon-21.3-virtualbox.pkr.hcl core-template-virtualbox.pkr.hcl
-      - packer validate -var-file=mint-cinnamon-21.3-kvm.pkr.hcl core-template-kvm.pkr.hcl
+      - packer validate -var-file=mint-cinnamon-21.3-virtualbox.pkrvars.hcl core-template-virtualbox.pkr.hcl
+      - packer validate -var-file=mint-cinnamon-21.3-kvm.pkrvars.hcl core-template-kvm.pkr.hcl
   build:virtualbox:
     summary: Build Linux Mint for VirtualBox
     desc: Build Linux Mint for VirtualBox
@@ -52,11 +52,9 @@ tasks:
     silent: true
     cmds:
       - |
-        stty -echo
-        read -r -p "Enter Vagrant Cloud token: " VAGRANT_CLOUD_TOKEN
-        echo ""
-        stty echo
-        packer build -var="cloud_token=$VAGRANT_CLOUD_TOKEN" -var-file=mint-cinnamon-{{ .VERSION }}-virtualbox.pkr.hcl core-template-virtualbox.pkr.hcl
+        [ -z "$CODESPACES" ] && export DOPPLER_CONFIG=$(hostname) || export DOPPLER_CONFIG=codespaces
+        export VAGRANT_CLOUD_TOKEN=$(doppler secrets get -p $DOPPLER_PROJECT -c $DOPPLER_CONFIG VAGRANT_CLOUD_TOKEN --plain)
+        packer build -var-file=mint-cinnamon-{{ .VERSION }}-virtualbox.pkrvars.hcl core-template-virtualbox.pkr.hcl
   build:kvm:
     summary: Build Linux Mint for KVM
     desc: Build Linux Mint for KVM
@@ -64,11 +62,9 @@ tasks:
     silent: true
     cmds:
       - |
-        stty -echo
-        read -r -p "Enter Vagrant Cloud token: " VAGRANT_CLOUD_TOKEN
-        echo ""
-        stty echo
-        packer build -var="cloud_token=$VAGRANT_CLOUD_TOKEN" -var-file=mint-cinnamon-{{ .VERSION }}-kvm.pkr.hcl core-template-kvm.pkr.hcl
+        [ -z "$CODESPACES" ] && export DOPPLER_CONFIG=$(hostname) || export DOPPLER_CONFIG=codespaces
+        export VAGRANT_CLOUD_TOKEN=$(doppler secrets get -p $DOPPLER_PROJECT -c $DOPPLER_CONFIG VAGRANT_CLOUD_TOKEN --plain)
+        packer build -var-file=mint-cinnamon-{{ .VERSION }}-kvm.pkrvars.hcl core-template-kvm.pkr.hcl
   build:virtualbox:21.3:
     summary: Build Linux Mint 21.3 for VirtualBox
     desc: Build Linux Mint 21.3 for VirtualBox
