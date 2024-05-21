@@ -1,5 +1,7 @@
 ---
 version: "3"
+env:
+  DOPPLER_PROJECT: "development"
 tasks:
   # tool versions
   tool-versions:upgrade:repo:
