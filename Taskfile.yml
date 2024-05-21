@@ -27,6 +27,12 @@ tasks:
           OWNER: go-task
           NAME: task
   # packer
+  init:
+    summary: Run Packer init
+    desc: Run Packer init
+    cmds:
+      - packer init core-template-virtualbox.pkr.hcl
+      - packer init core-template-kvm.pkr.hcl
   fmt:
     summary: Run Packer fmt
     desc: Run Packer fmt
