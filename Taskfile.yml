@@ -1,7 +1,5 @@
 ---
 version: "3"
-env:
-  DOPPLER_PROJECT: "development"
 tasks:
   # tool versions
   tool-versions:upgrade:repo:
@@ -54,8 +52,8 @@ tasks:
     silent: true
     cmds:
       - |
-        [ -z "$CODESPACES" ] && export DOPPLER_CONFIG=$(hostname) || export DOPPLER_CONFIG=codespaces
-        export VAGRANT_CLOUD_TOKEN=$(doppler secrets get -p $DOPPLER_PROJECT -c $DOPPLER_CONFIG VAGRANT_CLOUD_TOKEN --plain)
+        hcp auth login
+        export VAGRANT_CLOUD_TOKEN=$(hcp auth print-access-token)
         packer build -var-file=mint-cinnamon-{{ .VERSION }}-virtualbox.pkrvars.hcl core-template-virtualbox.pkr.hcl
   build:kvm:
     summary: Build Linux Mint for KVM
@@ -64,8 +62,8 @@ tasks:
     silent: true
     cmds:
       - |
-        [ -z "$CODESPACES" ] && export DOPPLER_CONFIG=$(hostname) || export DOPPLER_CONFIG=codespaces
-        export VAGRANT_CLOUD_TOKEN=$(doppler secrets get -p $DOPPLER_PROJECT -c $DOPPLER_CONFIG VAGRANT_CLOUD_TOKEN --plain)
+        hcp auth login
+        export VAGRANT_CLOUD_TOKEN=$(hcp auth print-access-token)
         packer build -var-file=mint-cinnamon-{{ .VERSION }}-kvm.pkrvars.hcl core-template-kvm.pkr.hcl
   build:virtualbox:21.3:
     summary: Build Linux Mint 21.3 for VirtualBox
