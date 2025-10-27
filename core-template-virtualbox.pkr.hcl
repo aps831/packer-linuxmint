@@ -94,6 +94,10 @@ source "virtualbox-iso" "iso" {
     "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
     "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
     "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+    "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+    "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+    "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+    "<bs><bs><bs><bs><bs><bs><bs><bs>",
     "/casper/vmlinuz ",
     "url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/${var.preseed} ",
     "boot=casper ",
@@ -110,7 +114,7 @@ source "virtualbox-iso" "iso" {
   gfx_controller       = "vmsvga"
   gfx_vram_size        = "32"
   guest_additions_mode = "disable"
-  guest_os_type        = "Ubuntu22_LTS_64"
+  guest_os_type        = "Ubuntu_64"
   hard_drive_interface = "sata"
   headless             = "${var.headless}"
   http_directory       = "http"

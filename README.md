@@ -15,7 +15,7 @@ To upload a box to [Vagrantup](https://app.vagrantup.com/), a new Vagrant box mu
 To build a specific box use the appropriate command from the taskfile, for example:
 
 ```bash
-task build:virtualbox:21.3
+task build:virtualbox:22.2
 ```
 
 ### Acknowledgments
