@@ -31,30 +31,17 @@ tasks:
     summary: Run Packer init
     desc: Run Packer init
     cmds:
-      - packer init core-template-virtualbox.pkr.hcl
       - packer init core-template-kvm.pkr.hcl
   fmt:
     summary: Run Packer fmt
     desc: Run Packer fmt
     cmds:
-      - packer fmt -var-file=mint-cinnamon-21.3-virtualbox.pkrvars.hcl core-template-virtualbox.pkr.hcl
       - packer fmt -var-file=mint-cinnamon-21.3-kvm.pkrvars.hcl core-template-kvm.pkr.hcl
   validate:
     summary: Run Packer validate
     desc: Run Packer validate
     cmds:
-      - packer validate -var-file=mint-cinnamon-21.3-virtualbox.pkrvars.hcl core-template-virtualbox.pkr.hcl
       - packer validate -var-file=mint-cinnamon-21.3-kvm.pkrvars.hcl core-template-kvm.pkr.hcl
-  build:virtualbox:
-    summary: Build Linux Mint for VirtualBox
-    desc: Build Linux Mint for VirtualBox
-    internal: true
-    silent: true
-    cmds:
-      - |
-        hcp auth login
-        export VAGRANT_CLOUD_TOKEN=$(hcp auth print-access-token)
-        packer build -var-file=mint-cinnamon-{{ .VERSION }}-virtualbox.pkrvars.hcl core-template-virtualbox.pkr.hcl
   build:kvm:
     summary: Build Linux Mint for KVM
     desc: Build Linux Mint for KVM
@@ -65,13 +52,6 @@ tasks:
         hcp auth login
         export VAGRANT_CLOUD_TOKEN=$(hcp auth print-access-token)
         packer build -var-file=mint-cinnamon-{{ .VERSION }}-kvm.pkrvars.hcl core-template-kvm.pkr.hcl
-  build:virtualbox:21.3:
-    summary: Build Linux Mint 21.3 for VirtualBox
-    desc: Build Linux Mint 21.3 for VirtualBox
-    cmds:
-      - task: build:virtualbox
-        vars:
-          VERSION: 21.3
   build:kvm:21.3:
     summary: Build Linux Mint 21.3 for KVM
     desc: Build Linux Mint 21.3 for KVM
