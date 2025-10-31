@@ -51,7 +51,7 @@ tasks:
       - |
         hcp auth login
         export VAGRANT_CLOUD_TOKEN=$(hcp auth print-access-token)
-        packer build -var-file=mint-cinnamon-{{ .VERSION }}-kvm.pkrvars.hcl core-template-kvm.pkr.hcl
+        packer build -var-file=mint-cinnamon-{{ .VERSION }}-kvm.pkrvars.hcl .
   build:kvm:21.3:
     summary: Build Linux Mint 21.3 for KVM
     desc: Build Linux Mint 21.3 for KVM

@@ -1,4 +1,4 @@
-_comment = "Built with `packer build -var-file=mint-cinnamon-21.3-kvm.pkrvars.hcl core-template-kvm.pkr.hcl`"
+_comment = "Built with `packer build -var-file=mint-cinnamon-21.3-kvm.pkrvars.hcl .`"
 box_tag = "aps831/mint-cinnamon-21.3"
 disk_size = 50000
 iso_checksum = "sha256:5aa24abbc616807ab754a6a3b586f24460b0c213b6cacb0bf8b9a80b65013ecc"
