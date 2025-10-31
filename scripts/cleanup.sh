@@ -10,15 +10,15 @@ rm /lib/udev/rules.d/75-persistent-net-generator.rules
 echo '==> Cleaning up leftover dhcp leases'
 # Ubuntu 10.04
 if [[ -d '/var/lib/dhcp3' ]]; then
-    rm /var/lib/dhcp3/*
+	rm /var/lib/dhcp3/*
 fi
 # Ubuntu 12.04 & 14.04
 if [[ -d '/var/lib/dhcp' ]]; then
-    rm /var/lib/dhcp/*
+	rm /var/lib/dhcp/*
 fi
 
 # Add delay to prevent "vagrant reload" from failing
-echo 'pre-up sleep 2' >> /etc/network/interfaces
+echo 'pre-up sleep 2' >>/etc/network/interfaces
 
 echo '==> Cleaning up tmp'
 rm -rf /tmp/*
@@ -34,22 +34,22 @@ rm -f /root/.bash_history
 rm -f /home/vagrant/.bash_history
 
 # Clean up log files
-find /var/log -type f | while read -r f; do echo -ne '' > "${f}"; done;
+find /var/log -type f | while read -r f; do echo -ne '' >"${f}"; done
 
 echo '==> Clearing last login information'
-true > /var/log/lastlog
-true > /var/log/wtmp
-true > /var/log/btmp
+true >/var/log/lastlog
+true >/var/log/wtmp
+true >/var/log/btmp
 
 # Whiteout root
-count=$(df --sync -kP / | tail -n1  | awk -F ' ' '{print $4}')
-(( count-- ))
+count=$(df --sync -kP / | tail -n1 | awk -F ' ' '{print $4}')
+((count--))
 dd if=/dev/zero of=/tmp/whitespace bs=1024 count="${count}"
 rm /tmp/whitespace
 
 # Whiteout /boot
 count=$(df --sync -kP /boot | tail -n1 | awk -F ' ' '{print $4}')
-(( count-- ))
+((count--))
 dd if=/dev/zero of=/boot/whitespace bs=1024 count="${count}"
 rm /boot/whitespace
 
@@ -57,21 +57,21 @@ echo '==> Clear out swap and disable until reboot'
 set +e
 swapuuid=$(/sbin/blkid -o value -l -s UUID -t TYPE=swap)
 case "$?" in
-    2|0) ;;
-    *) exit 1 ;;
+2 | 0) ;;
+*) exit 1 ;;
 esac
 set -e
 if [ "x${swapuuid}" != "x" ]; then
-    # Whiteout the swap partition to reduce box size
-    # Swap is disabled till reboot
-    swappart=$(readlink -f "/dev/disk/by-uuid/${swapuuid}")
-    /sbin/swapoff "${swappart}"
-    dd if=/dev/zero of="${swappart}" bs=1M || echo "dd exit code $? is suppressed"
-    /sbin/mkswap -U "${swapuuid}" "${swappart}"
+	# Whiteout the swap partition to reduce box size
+	# Swap is disabled till reboot
+	swappart=$(readlink -f "/dev/disk/by-uuid/${swapuuid}")
+	/sbin/swapoff "${swappart}"
+	dd if=/dev/zero of="${swappart}" bs=1M || echo "dd exit code $? is suppressed"
+	/sbin/mkswap -U "${swapuuid}" "${swappart}"
 fi
 
 # Zero out the free space to save space in the final image
-dd if=/dev/zero of=/EMPTY bs=1M  || echo "dd exit code $? is suppressed"
+dd if=/dev/zero of=/EMPTY bs=1M || echo "dd exit code $? is suppressed"
 rm -f /EMPTY
 
 # Make sure we wait until all the data is written to disk, otherwise

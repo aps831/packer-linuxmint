@@ -3,19 +3,19 @@ build {
 
   provisioner "shell" {
     execute_command = "echo '${var.ssh_password}' | {{ .Vars }} sudo -E -S bash '{{ .Path }}'"
-    scripts         = ["script/rc_local.sh", "script/apt.sh", "script/sshd.sh"]
+    scripts         = ["scripts/rc_local.sh", "scripts/apt.sh", "scripts/sshd.sh"]
   }
 
   provisioner "shell" {
     execute_command   = "echo '${var.ssh_password}' | {{ .Vars }} sudo -E -S bash '{{ .Path }}'"
     expect_disconnect = true
-    scripts           = ["script/update.sh", "script/reboot.sh"]
+    scripts           = ["scripts/update.sh", "scripts/reboot.sh"]
   }
 
   provisioner "shell" {
     execute_command = "echo '${var.ssh_password}' | {{ .Vars }} sudo -E -S bash '{{ .Path }}'"
     pause_before    = "1m0s"
-    scripts         = ["script/vagrant.sh", "script/motd.sh", "script/cleanup.sh"]
+    scripts         = ["scripts/vagrant.sh", "scripts/motd.sh", "scripts/cleanup.sh"]
   }
 
   post-processors {
