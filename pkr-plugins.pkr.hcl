@@ -1,12 +1,13 @@
 packer {
+  required_version = ">= 1.7.0"
   required_plugins {
-    vagrant = {
-      source  = "github.com/hashicorp/vagrant"
-      version = "~> 1"
-    }
     qemu = {
+      version = ">= 1.1.0"
       source  = "github.com/hashicorp/qemu"
-      version = "~> 1"
+    }
+    vagrant = {
+      version = ">= 1.1.0"
+      source  = "github.com/hashicorp/vagrant"
     }
   }
 }
