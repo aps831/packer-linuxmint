@@ -24,7 +24,7 @@ A search and replace on the Linux Mint version number will do the majority of th
 
 Updated using chef/bento project from other projects.
 
-- [bento] (https://github.com/chef/bento)
+- [bento](https://github.com/chef/bento)
 
 - [r-a-p-a](https://github.com/r-a-p-a)
 
