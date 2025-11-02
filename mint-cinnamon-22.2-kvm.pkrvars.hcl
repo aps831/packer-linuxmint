@@ -1,6 +1,6 @@
 _comment                = "Built with `packer build -var-file=mint-cinnamon-22.2-kvm.pkrvars.hcl .`"
 box_tag                 = "aps831/mint-cinnamon-22.2"
-box_version             = "1.0.0"
+box_version             = "1.1.0"
 os_name                 = "linux-mint"
 os_version              = "22.2"
 os_version_description  = "Linux Mint 22.2"
