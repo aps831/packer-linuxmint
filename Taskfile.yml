@@ -33,17 +33,20 @@ tasks:
     summary: Run Packer init
     desc: Run Packer init
     cmds:
-      - packer init core-template-kvm.pkr.hcl
+      - packer init .
   fmt:
     summary: Run Packer fmt
     desc: Run Packer fmt
     cmds:
-      - packer fmt -var-file=mint-cinnamon-22.2-kvm.pkrvars.hcl core-template-kvm.pkr.hcl
+      - packer fmt -var-file=mint-cinnamon-22.2-kvm.pkrvars.hcl .
   validate:
     summary: Run Packer validate
     desc: Run Packer validate
     cmds:
-      - packer validate -var-file=mint-cinnamon-22.2-kvm.pkrvars.hcl core-template-kvm.pkr.hcl
+      - |
+        export PKR_VAR_hcp_client_id="TEMP"
+        export PKR_VAR_hcp_client_secret="TEMP"
+        packer validate -var-file=mint-cinnamon-22.2-kvm.pkrvars.hcl .
   build:kvm:
     summary: Build Linux Mint for KVM
     desc: Build Linux Mint for KVM
