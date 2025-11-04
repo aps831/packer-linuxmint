@@ -1,6 +1,6 @@
 locals {
   nix_environment_vars = ["HOME_DIR=/home/vagrant"]
-  nix_execute_command = "echo 'vagrant' | {{ .Vars }} sudo -S -E sh -eux '{{ .Path }}'"
+  nix_execute_command  = "echo 'vagrant' | {{ .Vars }} sudo -S -E sh -eux '{{ .Path }}'"
 }
 
 # https://www.packer.io/docs/templates/hcl_templates/blocks/build
@@ -29,7 +29,7 @@ build {
     execute_command   = local.nix_execute_command
     expect_disconnect = true
     pause_before      = "10s"
-    scripts           = [
+    scripts = [
       "${path.root}/scripts/vagrant.sh",
       "${path.root}/scripts/sshd.sh"
     ]
@@ -46,7 +46,7 @@ build {
     execute_command   = local.nix_execute_command
     expect_disconnect = true
     pause_before      = "10s"
-    scripts           = [
+    scripts = [
       "${path.root}/scripts/networking.sh",
       "${path.root}/scripts/sudoers.sh",
       "${path.root}/scripts/systemd.sh",
@@ -57,7 +57,7 @@ build {
 
     post-processor "vagrant" {
       keep_input_artifact  = false
-      vagrantfile_template =  null
+      vagrantfile_template = null
       compression_level    = "9"
       output               = "box/{{ .Provider }}/${var.os_name}-${var.os_version}-${var.os_arch}.{{ .Provider }}.box"
     }
