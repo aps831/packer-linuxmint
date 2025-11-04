@@ -10,9 +10,13 @@ variable "box_version" {
   type    = string
   default = "TBD"
 }
-variable "cloud_token" {
+variable "hcp_client_id" {
   type    = string
-  default = "${env("VAGRANT_CLOUD_TOKEN")}"
+  default = "${env("HCP_PACKER_LINUXMINT_CLIENT_ID")}"
+}
+variable "hcp_client_secret" {
+  type    = string
+  default = "${env("HCP_PACKER_LINUXMINT_CLIENT_SECRET")}"
 }
 variable "os_name" {
   type        = string

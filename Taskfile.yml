@@ -52,9 +52,7 @@ tasks:
     cmds:
       - |
         [ -z "$CODESPACES" ] && export DOPPLER_CONFIG=$(hostname) || export DOPPLER_CONFIG=codespaces
-        doppler run -- hcp auth login --client-id=$HCP_PACKER_LINUXMINT_CLIENT_ID --client-secret=$HCP_PACKER_LINUXMINT_CLIENT_SECRET
-        export VAGRANT_CLOUD_TOKEN=$(hcp auth print-access-token)
-        packer build -var-file=mint-cinnamon-{{ .VERSION }}-kvm.pkrvars.hcl .
+        doppler run -- packer build -var-file=mint-cinnamon-{{ .VERSION }}-kvm.pkrvars.hcl .
   build:kvm:22.2:
     summary: Build Linux Mint 22.2 for KVM
     desc: Build Linux Mint 22.2 for KVM

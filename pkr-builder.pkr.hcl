@@ -62,9 +62,10 @@ build {
       output               = "box/{{ .Provider }}/${var.os_name}-${var.os_version}-${var.os_arch}.{{ .Provider }}.box"
     }
 
-    post-processor "vagrant-cloud" {
+    post-processor "vagrant-registry" {
       box_tag             = "${var.box_tag}"
-      access_token        = "${var.cloud_token}"
+      client_id           = "${var.hcp_client_id}"
+      client_secret       = "${var.hcp_client_secret}"
       version             = "${var.box_version}"
       version_description = "${var.os_version_description}"
     }
